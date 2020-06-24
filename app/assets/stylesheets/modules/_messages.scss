@@ -1,0 +1,219 @@
+@mixin flx_cent_btwn{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flx_btwn{
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin flx_cent{
+  display: flex;
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.wrapper{
+  display: flex;
+}
+
+.Side{
+  width: 300px;
+  height: 100vh;
+  background-color: #253141;
+}
+
+.Header{
+  height: 100px;
+  background-color: #253141;
+  @include flx_cent();
+}
+
+.UserBox{
+  width: 260px;
+  height: 20px;
+  margin: 0 20px;
+  @include flx_btwn();
+
+  &__username{
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+
+.EditBox{
+  width: 60px;
+  @include flx_cent();
+  justify-content: flex-end;
+  
+  &__newgroup{
+    margin-right: 5px;
+    color: #fff;
+  }
+
+  &__settings{
+    color: #fff;
+  }
+}
+
+.Group-list{
+  height: calc(100vh - 100px);
+  background-color: #2f3e51;
+  padding-top: 20px;
+}
+
+.ListBox{
+  padding: 0 20px 40px 20px;
+  color: #fff;
+  font-weight: bold;
+
+  &__groupname{
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+  &__message{
+    font-size: 11px;
+  }
+
+}
+
+.Main{
+  width: calc(100vw - 300px);
+  height: 100vh;
+  background-color: #fff;
+}
+
+.Wrapper{
+  @include flx_btwn();
+  margin: 0 40px;
+}
+
+.GroupBox{
+  
+  &__groupname{
+    color: #333;
+    font-size: 20px;
+    margin-top: 35px;
+    margin-bottom: 15px;
+  }
+}
+
+.Members{
+  display: flex;
+  color: #999;
+  font-size: 12px;
+}
+
+.EditForm{
+  height: 40px;
+  width: 72px;
+  border: 1px solid #38aef0;
+  padding: 0 20px;
+  text-align: center;
+  margin-top: 28px;
+
+  &_group{
+    text-decoration: none;
+    color: #38aef0;
+    font-size: 16px;
+    line-height: 40px;
+  }
+}
+
+.GroupInfo{
+  height: 100px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.Chat-Display{
+  height: calc(100vh - 190px);
+  background-color: #fafafa;
+}
+
+.ChatLists{
+  margin-left: 40px;
+  padding-top: 35px;
+}
+
+.ChatList{
+  margin-bottom: 46px;
+
+  &_message{
+    color: #434a54;
+    font-size: 14px;
+  }
+}
+
+.ChatInfo{
+  margin-bottom: 12px;
+  display: flex;
+
+  &_name{
+    color: #333;
+    font-size: 16px;
+    padding-right: 10px;
+  }
+
+  &_date{
+    color: #999;
+    font-size: 12px;
+  }
+}
+
+.FormField{
+  height: 90px;
+  background-color: #d2d2d2;
+  @include flx_cent();
+}
+
+.FormBox{
+  width: 100%;
+  margin-left: 40px;
+  margin-right: 40px;
+  @include flx_btwn();
+
+  &_submit{
+    height: 50px;
+    color: #fff;
+    font-size: 16px;
+    padding: 0 30px;
+    text-align: center;
+    background-color: #38aef0;
+    border: none;
+  }
+}
+
+.Text-Image{
+  position: relative;
+  margin-right: 15px;
+  width: 100%;
+
+  &_text{
+    padding: 0 10px;
+    width: 100%;
+    height: 50px;
+  }
+
+  &_image{
+    height: 50px;
+    position: absolute;
+    right: 10px;
+
+    & i{
+      cursor: pointer;
+      font-size: 25px;
+      line-height: 50px;
+    }
+
+    & input{
+      display: none;
+    }
+  }
+}
