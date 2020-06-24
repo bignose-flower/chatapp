@@ -7,7 +7,7 @@
           %li.Members__member_p Member&nbsp;:
           %li.Members__member &nbsp;masa
       .EditForm
-        = link_to "Edit", "#", { class: "EditForm_group" }
+        = link_to "Edit", edit_group_path(@group.id), { class: "EditForm_group" }
   .Chat-Display
     .ChatLists
       .ChatList

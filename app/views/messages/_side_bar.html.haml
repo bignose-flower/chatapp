@@ -4,15 +4,14 @@
       %p.UserBox__username= current_user.name
       %ul.EditBox
         %li
-          = link_to "", {class: "EditBox__newgroup"} do
+          = link_to new_group_path, {class: "EditBox__newgroup"} do
             = icon('fas', 'edit')
         %li
           = link_to edit_user_path(current_user), {class: "EditBox__settings"} do
             = icon('fas', 'cog')
   .Group-list
-    .ListBox
-      %p.ListBox__groupname techcamp
-      %p.ListBox__message まだメッセージはありません
-    .ListBox
-      %p.ListBox__groupname techcamp
-      %p.ListBox__message まだメッセージはありません
+    - current_user.groups.each do |group|
+      .ListBox
+        = link_to '#', { class:"ListBox_link" } do
+          %p.ListBox__groupname= group.name
+          %p.ListBox__message メッセージはありません
