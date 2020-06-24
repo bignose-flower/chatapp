@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
 
   resources :users, only: [:edit, :update]
-  resources :groups, only: [:index, :new, :create, :edit, :update]
-    resources :messages, only: [:index, :new, :create]
+  resources :groups, only: [:index, :new, :create, :edit, :update] do
+    resources :messages, only: [:index, :create]
+  end
 end

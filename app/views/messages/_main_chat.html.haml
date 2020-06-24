@@ -21,10 +21,10 @@
           %li.ChatInfo_date 2019/11/20(Wed) 17:43
         %p.ChatList_message おはよう！
   .SendMessage
-    .FormBox
+    = form_with model: [@group, @message], html: {class: "FormBox"}, local: true do |f|
       .Text-Image
-        %input.Text-Image_text{placeholder: "type a text"}
-        %label{class: "Text-Image_image"}
+        = f.text_field :content, class: 'Text-Image_text', placeholder: 'type a text'
+        = f.label :image, {class: "Text-Image_image"} do
           = icon('far', 'images')
-          %input{type: "file"}
-      %input.FormBox_submit{ type: "submit", value: "Send"}
+          = f.file_field :image
+      = f.submit 'Send', class: 'FormBox_submit'
