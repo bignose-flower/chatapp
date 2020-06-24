@@ -2,24 +2,21 @@
   .GroupInfo
     .Wrapper
       .GroupBox
-        %p.GroupBox__groupname test
+        %p.GroupBox__groupname= @group.name
         %ul.Members
-          %li.Members__member_p Member&nbsp;:
-          %li.Members__member &nbsp;masa
+          %li.Members__member_p Member&nbsp;:&nbsp;
+          - @group.users.each do |user|
+            %li.Members__member=   user.name
       .EditForm
-        = link_to "Edit", edit_group_path(@group.id), { class: "EditForm_group" }
+        = link_to "Edit", edit_group_path(@group), { class: "EditForm_group" }
   .Chat-Display
     .ChatLists
-      .ChatList
-        .ChatInfo
-          .ChatInfo_name masa
-          .ChatInfo_date 2019/11/20(Wed) 17:43
-        %p.ChatList_message おはよう！
-      .ChatList
-        %ul.ChatInfo
-          %li.ChatInfo_name masa
-          %li.ChatInfo_date 2019/11/20(Wed) 17:43
-        %p.ChatList_message おはよう！
+      - @messages.each do |message|
+        .ChatList
+          .ChatInfo
+            .ChatInfo_name= message.user.name
+            .ChatInfo_date 2019/11/20(Wed) 17:43
+          %p.ChatList_message= message.content
   .SendMessage
     = form_with model: [@group, @message], html: {class: "FormBox"}, local: true do |f|
       .Text-Image
