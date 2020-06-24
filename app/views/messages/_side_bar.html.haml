@@ -1,13 +1,13 @@
 .Side
   .Header
     .UserBox
-      %p.UserBox__username masa
+      %p.UserBox__username= current_user.name
       %ul.EditBox
         %li
           = link_to "", {class: "EditBox__newgroup"} do
             = icon('fas', 'edit')
         %li
-          = link_to "", {class: "EditBox__settings"} do
+          = link_to edit_user_path(current_user), {class: "EditBox__settings"} do
             = icon('fas', 'cog')
   .Group-list
     .ListBox
