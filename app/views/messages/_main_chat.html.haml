@@ -21,7 +21,7 @@
     = form_with model: [@group, @message], html: {class: "FormBox"}, local: true do |f|
       .Text-Image
         = f.text_field :content, class: 'Text-Image_text', placeholder: 'type a text'
-        = f.label :image, {class: "Text-Image_image"} do
+        = f.label :image, class: 'Text-Image_image' do
           = icon('far', 'images')
           = f.file_field :image
       = f.submit 'Send', class: 'FormBox_submit'
