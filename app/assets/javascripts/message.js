@@ -46,4 +46,39 @@ $(function() {
       alert("メッセージの送信に失敗しました")
     })
   });
+
+  function addUser(user){
+    let html = `<div class="ChatMember clearfix">
+                  <p class="ChatMember__name">${user.name}</p>
+                  <div class="ChatMember__add ChatMember__button" data-user-id="${user.id}" data-user-name="${user.name}">追加</div>`
+    $('#UserSearchResult').append(html);
+  }
+
+  function addNoUser(user){
+    let html = `<div class="ChatMember clearfix">
+                  <p class="ChatMember__name">ユーザーが見つかりません</p>
+                </div>`
+    $('#UserSearchResult').append(html);
+  }
+
+  $('.SettingGroupForm__input').on('keyup', function(){
+    let input = $(this).val();
+    $.ajax({
+      type: 'GET',
+      url: '/users',
+      dataType: 'json',
+      data: { keyword: input }
+    })
+    .done(function(users) {
+      $(this).empty();
+      if (input != ''){
+        $.each(users, function(index, user) {
+          addUser(user);
+        })
+      }
+    })
+    .fail(function(){
+      alert('フォームの読み取りに失敗しました')
+    })
+  })
 })
