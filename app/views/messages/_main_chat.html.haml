@@ -17,6 +17,8 @@
             .ChatInfo_name= message.user.name
             .ChatInfo_date 2019/11/20(Wed) 17:43
           %p.ChatList_message= message.content
+          - if (message.image.present?)
+            = image_tag "#{message.image}", alt: "写真"
   .SendMessage
     = form_with model: [@group, @message], html: {class: "FormBox"}, local: true do |f|
       .Text-Image
