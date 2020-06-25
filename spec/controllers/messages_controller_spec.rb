@@ -42,6 +42,8 @@ describe MessagesController do
       end
 
       context 'failure to save' do
+      
+      end
     end
 
     context 'not log in' do
