@@ -112,6 +112,10 @@
   display: flex;
   color: #999;
   font-size: 12px;
+
+  &__member{
+    margin-right: 5px;
+  }
 }
 
 .EditForm{

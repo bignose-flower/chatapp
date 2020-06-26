@@ -54,15 +54,15 @@ $(function() {
     $('#UserSearchResult').append(html);
   }
 
-  function addNoUser(user){
+  function addNoUser(){
     let html = `<div class="ChatMember clearfix">
                   <p class="ChatMember__name">ユーザーが見つかりません</p>
                 </div>`
     $('#UserSearchResult').append(html);
   }
 
-  $('.SettingGroupForm__input').on('keyup', function(){
-    let input = $(this).val();
+  $('#UserSearch__field').on('keyup', function(){
+    let input = $('#UserSearch__field').val();
     $.ajax({
       type: 'GET',
       url: '/users',
@@ -70,15 +70,42 @@ $(function() {
       data: { keyword: input }
     })
     .done(function(users) {
-      $(this).empty();
-      if (input != ''){
-        $.each(users, function(index, user) {
+      $('#UserSearchResult').empty();
+      if (users.length !== 0){
+        users.forEach(function(user) {
           addUser(user);
-        })
+        });
+      }else if (input.length == 0){
+        addNoUser();
+      }else {
+        addNoUser();
       }
     })
     .fail(function(){
       alert('フォームの読み取りに失敗しました')
     })
+  })
+
+  function insertMember(id, name) {
+    let html = `<div class="ChatMember">
+                  <p class="ChatMember__name">${name}</p>
+                  <input name="group[user_ids][]" type="hidden" value="${id}" />
+                  <div class="ChatMember__remove 
+                  ChatMember__button">削除</div>
+                </div>`;
+    $('.ChatMembers').append(html);
+  }
+
+
+  $('#UserSearchResult').on('click', '.ChatMember__add', function() {
+    let parent = $(this).parent();
+    parent.remove();
+    let id = $(this).data('user-id');
+    let name = $(this).data('user-name');
+    insertMember(id, name);
+  })
+  $('.ChatMember').on('click', '.ChatMember__remove', function(){
+    let parent = $(this).parent();
+    parent.remove();
   })
 })
