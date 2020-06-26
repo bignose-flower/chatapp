@@ -24,7 +24,7 @@ $(function(){
   }
 
   let reloadMessages = function(){
-    let last_message_id = $('.ChatInfo:last').data("message-id")
+    let last_message_id = $('.ChatList:last').data("message-id");
 
     $.ajax({
       url: "api/messages",
@@ -36,16 +36,16 @@ $(function(){
       if (messages.length !== 0){
         let insertHTML = '';
         $.each(messages, function(i, message) {
-          insertHTML += MSBlobBuilder(message)
+          insertHTML += addHTML(message);
         })
+        $('.ChatLists').append(insertHTML);
+        $('.Chat-Display').animate({ scrollTop: $('.Chat-Display')[0].scrollHeight});
       }
-      $('.ChatLists').append(insertHTML);
-      $('.Chat-Display').animate({ scrollTop: $('.Chat-Display')[0].scrollHeight});
+      
     })
     .fail(function(){
-      alert('error')
-    })
+      alert('error');
+    });
   }
-
   setInterval(reloadMessages, 7000);
 })
