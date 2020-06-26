@@ -11,14 +11,7 @@
         = link_to "Edit", edit_group_path(@group), { class: "EditForm_group" }
   .Chat-Display
     .ChatLists
-      - @messages.each do |message|
-        .ChatList
-          .ChatInfo
-            .ChatInfo_name= message.user.name
-            .ChatInfo_date= message.created_at
-          %p.ChatList_message= message.content
-          - if (message.image.present?)
-            = image_tag "#{message.image}", alt: "写真"
+      = render partial: 'message', locals: {messages: @messages}
   .SendMessage
     = form_with model: [@group, @message], html: {class: "FormBox"}, local: true do |f|
       .Text-Image
