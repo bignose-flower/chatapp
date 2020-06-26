@@ -4,7 +4,7 @@
       .GroupBox
         %p.GroupBox__groupname= @group.name
         %ul.Members
-          %li.Members__member_p Member&nbsp;:&nbsp;
+          %li.Members__p Member&nbsp;:&nbsp;
           - @group.users.each do |user|
             %li.Members__member=   user.name
       .EditForm
@@ -15,7 +15,7 @@
         .ChatList
           .ChatInfo
             .ChatInfo_name= message.user.name
-            .ChatInfo_date 2019/11/20(Wed) 17:43
+            .ChatInfo_date= message.created_at
           %p.ChatList_message= message.content
           - if (message.image.present?)
             = image_tag "#{message.image}", alt: "写真"

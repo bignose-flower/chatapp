@@ -5,3 +5,11 @@
           <p class="ChatList_message">message.content</p>
   </div>
 </div>
+
+<div class="ChatMember clearfix">
+  <p class="ChatMember__name">user.name</p>
+  <div class="ChatMember__add ChatMember__button" data-user-id="ユーザーのID" data-user-name="ユーザーの名前">追加</div>
+
+  <div class="ChatMember clearfix">
+    <p class="ChatMember__name">ユーザーが見つかりません</p>
+  </div>
