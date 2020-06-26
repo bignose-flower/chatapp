@@ -2,7 +2,7 @@ $(function() {
 
   function addHTML(message){
     if( message.image ){
-      let html = `<div class="ChatList">
+      let html = `<div class="ChatList" data-message-id=${message.id}>
                     <div class="ChatInfo">
                       <div class="ChatInfo_name">${message.user_name}</div>
                       <div class="ChatInfo_date">${message.created_at}</div>
@@ -12,7 +12,7 @@ $(function() {
                   </div>`
       return html;
     }else {
-      let html = `<div class="ChatList">
+      let html = `<div class="ChatList" data-message-id=${message.id}>
                     <div class="ChatInfo">
                       <div class="ChatInfo_name">${message.user_name}</div>
                       <div class="ChatInfo_date">${message.created_at}</div>
@@ -119,10 +119,19 @@ $(function() {
       data: {id: last_message_id}
     })
     .done(function(messages) {
-      console.log('success');
+      if (messages.length !== 0){
+        let insertHTML = '';
+        $.each(messages, function(i, message) {
+          insertHTML += MSBlobBuilder(message)
+        })
+      }
+      $('.ChatLists').append(insertHTML);
+      $('.Chat-Display').animate({ scrollTop: $('.Chat-Display')[0].scrollHeight});
     })
     .fail(function(){
       console.log('failure');
     })
   }
+
+  setInterval(reloadMessages, 7000);
 })
