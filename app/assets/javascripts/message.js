@@ -108,4 +108,21 @@ $(function() {
     let parent = $(this).parent();
     parent.remove();
   })
+
+  let reloadMessages = function(){
+    let last_message_id = $('.ChatInfo:last').data("message-id")
+
+    $.ajax({
+      url: "api/messages",
+      type: "GET",
+      dataType: 'json',
+      data: {id: last_message_id}
+    })
+    .done(function(messages) {
+      console.log('success');
+    })
+    .fail(function(){
+      console.log('failure');
+    })
+  }
 })
