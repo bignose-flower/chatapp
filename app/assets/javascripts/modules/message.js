@@ -1,4 +1,4 @@
-$(function(){
+$(function() {
 
   function addHTML(message){
     if( message.image ){
@@ -23,29 +23,27 @@ $(function(){
     };
   }
 
-  let reloadMessages = function(){
-    let last_message_id = $('.ChatInfo:last').data("message-id")
-
+  $('.FormBox').on('submit', function(e) {
+    e.preventDefault();
+    let formdata = new FormData(this);
+    const url = $(this).prop('action');
     $.ajax({
-      url: "api/messages",
-      type: "GET",
+      url: url,
+      type: 'POST',
+      data: formdata,
       dataType: 'json',
-      data: {id: last_message_id}
+      processData: false,
+      contentType: false
     })
-    .done(function(messages) {
-      if (messages.length !== 0){
-        let insertHTML = '';
-        $.each(messages, function(i, message) {
-          insertHTML += MSBlobBuilder(message)
-        })
-      }
-      $('.ChatLists').append(insertHTML);
+    .done(function(message){
+      let html = addHTML(message);
+      $('.ChatLists').append(html);
       $('.Chat-Display').animate({ scrollTop: $('.Chat-Display')[0].scrollHeight});
+      $('.FormBox')[0].reset();
+      $('.FormBox_submit')[0].disabled = false;
     })
     .fail(function(){
-      alert('error')
+      alert("メッセージの送信に失敗しました")
     })
-  }
-
-  setInterval(reloadMessages, 7000);
+  });
 })
