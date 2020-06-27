@@ -15,9 +15,6 @@ $(function(){
 
   $('#UserSearch__field').on('keyup', function(){
     let input = $('#UserSearch__field').val();
-    if ($('.ChatMember__add')){
-      console.log('class exists');
-    }
     $.ajax({
       type: 'GET',
       url: '/users',
@@ -27,7 +24,7 @@ $(function(){
     .done(function(users) {
       $('#UserSearchResult').empty();
       if (users.length !== 0){
-        users.forEach(function(user) {
+        users.forEach(function(user){
           addUser(user);
         });
       }else if (input.length == 0){
