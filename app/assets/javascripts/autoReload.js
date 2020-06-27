@@ -24,7 +24,11 @@ $(function(){
   }
 
   let reloadMessages = function(){
-    let last_message_id = $('.ChatList:last').data("message-id");
+    last_message_id = 0;
+    if ($('.ChatList').data("message-id")){
+      last_message_id = $('.ChatList:last').data("message-id");
+    }
+    
 
     $.ajax({
       url: "api/messages",
