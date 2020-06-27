@@ -3,6 +3,7 @@ $(function(){
     let html = `<div class="ChatMember clearfix">
                   <p class="ChatMember__name">${user.name}</p>
                   <div class="ChatMember__add ChatMember__button" data-user-id="${user.id}" data-user-name="${user.name}">追加</div>`
+                  
     $('#UserSearchResult').append(html);
   }
 
@@ -42,21 +43,20 @@ $(function(){
     let html = `<div class="ChatMember">
                   <p class="ChatMember__name">${name}</p>
                   <input name="group[user_ids][]" type="hidden" value="${id}" />
-                  <div class="ChatMember__remove 
-                  ChatMember__button">削除</div>
+                  <div class="ChatMember__remove ChatMember__button">削除</div>
                 </div>`;
     $('.ChatMembers').append(html);
   }
 
 
   $('#UserSearchResult').on('click', '.ChatMember__add', function() {
-    let parent = $(this).parent();
-    parent.remove();
     let id = $(this).data('user-id');
     let name = $(this).data('user-name');
+    let parent = $(this).parent();
+    parent.remove();
     insertMember(id, name);
   })
-  $('.ChatMember').on('click', '.ChatMember__remove', function(){
+  $('.ChatMembers').on('click', '.ChatMember__remove', function(){
     let parent = $(this).parent();
     parent.remove();
   });
