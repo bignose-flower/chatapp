@@ -37,10 +37,12 @@ $(function() {
     })
     .done(function(message){
       let html = addHTML(message);
+
       $('.ChatLists').append(html);
-      $('.Chat-Display').animate({ scrollTop: $('.Chat-Display')[0].scrollHeight});
       $('.FormBox')[0].reset();
-      $('.FormBox_submit')[0].disabled = false;
+      $('.FormBox_submit').prop("disabled", false);
+      $('.Chat-Display').animate({ scrollTop: $('.Chat-Display')[0].scrollHeight});
+      
     })
     .fail(function(){
       alert("メッセージの送信に失敗しました")
