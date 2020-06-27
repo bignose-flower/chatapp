@@ -18,7 +18,6 @@ $(function(){
     let members = [];
     if ($('ChatMember__remove').length){
       $('.ChatMember__remove').forEach(function(i, member){
-        console.log('here');
         members += $('.ChatMember__remove')[i].data('user-id');
       });  
     }
