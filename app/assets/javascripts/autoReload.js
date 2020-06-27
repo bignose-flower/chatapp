@@ -1,4 +1,4 @@
-$(function(){
+$(window).load(function(){
 
   function addHTML(message){
     if( message.image ){
