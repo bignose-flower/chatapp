@@ -15,12 +15,19 @@ $(function(){
   }
 
   $('#UserSearch__field').on('keyup', function(){
+    let members = [];
+    if ($('ChatMember__remove').length){
+      $('.ChatMember__remove').forEach(function(i, member){
+        console.log('here');
+        members += $('.ChatMember__remove')[i].data('user-id');
+      });  
+    }
     let input = $('#UserSearch__field').val();
     $.ajax({
       type: 'GET',
       url: '/users',
       dataType: 'json',
-      data: { keyword: input }
+      data: { keyword: input, member_ids: members }
     })
     .done(function(users) {
       $('#UserSearchResult').empty();
@@ -43,7 +50,7 @@ $(function(){
     let html = `<div class="ChatMember">
                   <p class="ChatMember__name">${name}</p>
                   <input name="group[user_ids][]" type="hidden" value="${id}" />
-                  <div class="ChatMember__remove ChatMember__button">削除</div>
+                  <div class="ChatMember__remove ChatMember__button" data-user-id="${id}">削除</div>
                 </div>`;
     $('.ChatMembers').append(html);
   }
