@@ -9,8 +9,10 @@ class User < ApplicationRecord
   has_many :messages
   validates :name, presence: true, uniqueness: true
 
-  def self.search(keyword, user_id)
+  def self.search(keyword, group_ids=[], user_id)
     return nil if keyword == ''
-    User.where(['name LIKE ?', "%#{keyword}%"]).where.not(id: user_id).limit(10)
+    search_ids = []
+    search_ids << group_ids
+    User.where(['name LIKE ?', "%#{keyword}%"]).where.not(id: group_ids).where.not(id: user_id).limit(10)
   end
 end
